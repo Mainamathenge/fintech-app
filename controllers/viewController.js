@@ -1,8 +1,8 @@
 exports.getOverview = (req, res, next) => {
   res.json({
-    message: 'Awesome the web server works!😎',
-    author: 'Team A',
-    year: '2022',
-    for: 'Node js',
+    message: 'The first project-ecommerce',
+    author: 'Joseph Maina',
+    year: '2023',
+    for: 'Junior dev Qhala',
   });
 };
