@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const userRouter = require('./routes/userRoutes');
 const itemRouter = require('./routes/itemRoutes');
 const viewController = require('./routes/viewRoutes');
+const cartRouter = require('./routes/cartRoutes');
 
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use('/',viewController);
 app.use('/users',userRouter);
 app.use('/items',itemRouter);
+app.use('/cart',cartRouter);
 // app.use(cartRouter)
 
 
