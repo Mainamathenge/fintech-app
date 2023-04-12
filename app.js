@@ -4,6 +4,7 @@ const userRouter = require('./routes/userRoutes');
 const itemRouter = require('./routes/itemRoutes');
 const viewController = require('./routes/viewRoutes');
 const cartRouter = require('./routes/cartRoutes');
+const tokenRouter = require('./routes/tokenRoutes');
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/',viewController);
 app.use('/users',userRouter);
 app.use('/items',itemRouter);
 app.use('/cart',cartRouter);
+app.use('/token',tokenRouter);
 // app.use(cartRouter)
 
 
