@@ -7,7 +7,7 @@ exports.createCart = catchAsync(async(req , res ,next ) =>{
     const owner = req.body.owner;
     const itemId = req.body.items[0]['itemId'];
     const quantity = req.body.items[2]['quantity'];
-    console.log(itemId);
+    //console.log(itemId);
     //const { itemId, quantity } = req.body;
     const cart = await Cart.findOne({owner});
     const item = await Item.findOne ({_id : itemId});
@@ -59,9 +59,9 @@ exports.createCart = catchAsync(async(req , res ,next ) =>{
 
 exports.deleteItem = catchAsync( async(req , res ) => {
     const owner = req.body.owner;
-    const itemId = req.body.items[0]['itemId'];
-     try {
+    const itemId = req.body.item;
        let cart = await Cart.findOne({ owner });
+       console.log(cart);
    
        const itemIndex = cart.items.findIndex((item) => item.itemId == itemId);
        
@@ -81,9 +81,5 @@ exports.deleteItem = catchAsync( async(req , res ) => {
        } else {
        res.status(404).send("item not found");
        }
-     } catch (error) {
-       console.log(error);
-       res.status(400).send();
-     }
 
 });
