@@ -83,3 +83,30 @@ exports.deleteItem = catchAsync( async(req , res ) => {
        }
 
 });
+
+exports.checkout = catchAsync( async(req , res ) => {
+    const owner = req.body.owner;
+    const cartId  = req.body.cart;
+       let cart = await Cart.findOne({ owner });
+       console.log(cart);
+   
+       const itemIndex = cart.items.findIndex((item) => item.itemId == itemId);
+       
+       if (itemIndex > -1) {
+         let item = cart.items[itemIndex];
+         cart.bill -= item.quantity * item.price;
+         if(cart.bill < 0) {
+             cart.bill = 0
+         } 
+         cart.items.splice(itemIndex, 1);
+         cart.bill = cart.items.reduce((acc, curr) => {
+           return acc + curr.quantity * curr.price;
+       },0)
+         cart = await cart.save();
+   
+         res.status(200).send(cart);
+       } else {
+       res.status(404).send("item not found");
+       }
+
+});

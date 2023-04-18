@@ -1,7 +1,7 @@
 const express = require('express');
 const User = require('../models/userModel');
 const authController = require('../controllers/authController');
-const userController = require('../controllers/userController');
+//const userController = require('../controllers/userController');
 
 // instatiating the new router
 //router.get('/', viewController.getOverview);

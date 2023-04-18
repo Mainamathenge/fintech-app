@@ -42,6 +42,7 @@ const postStk = async (req, res) => {
   ) {
     token = req.headers.authorization.split(' ')[1];
   }
+  //console.log(token);
   const url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
   const date = new Date();
   const timestamp =

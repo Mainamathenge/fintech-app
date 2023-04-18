@@ -7,6 +7,5 @@ const router = new express.Router();
 
 router.post('/create', cartController.createCart );
 router.delete('/delete', cartController.deleteItem);
-// router.post('/forgotPassword', authController.forgotPassword);
-// router.patch('/resetPassword/:token', authController.resetPassword);
+//router.route('/order');
 module.exports = router ;
