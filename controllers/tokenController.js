@@ -15,13 +15,15 @@ const createToken = async (req, res, next) => {
     )
     .then((data) => {
       token = data.data.access_token;
-      console.log(data.data);
-      res.status(200).json({
-        status: 'success',
-        token: {
-          data: data.data,
-        },
-      });
+      console.log(token);
+      next();
+      // console.log(data.data);
+      // res.status(200).json({
+      //   status: 'success',
+      //   token: {
+      //     data: data.data,
+      //   },
+      // });
     })
     .catch((err) => {
       console.log(err);
@@ -35,14 +37,14 @@ const postStk = async (req, res) => {
   const amount = req.body.amount;
   const passkey =
     "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
-  let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
-    token = req.headers.authorization.split(' ')[1];
-  }
-  //console.log(token);
+  // let token;
+  // // if (
+  // //   req.headers.authorization &&
+  // //   req.headers.authorization.startsWith('Bearer')
+  // // ) {
+  // //   token = req.headers.authorization.split(' ')[1];
+  // // }
+  // //console.log(token);
   const url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
   const date = new Date();
   const timestamp =
@@ -64,7 +66,7 @@ const postStk = async (req, res) => {
     PartyA: `254${phone}`,
     PartyB: 174379,
     PhoneNumber: `254${phone}`,
-    CallBackURL: "https://3f41-105-163-1-118.in.ngrok.io/token/callback",
+    CallBackURL: "https://5dc1-197-232-155-144.ngrok-free.app/token/callback",
     AccountReference: "Mpesa Test",
     TransactionDesc: "Testing stk push",
   };
