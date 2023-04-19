@@ -1,8 +1,9 @@
 const express = require("express");
 const router=express.Router();
-const {createToken, postStk}= require("../controllers/tokenController");
+const {createToken, postStk, callback }= require("../controllers/tokenController");
 
-// router.post("/",createToken,postStk);
+//router.post("/",createToken);
 router.post("/",postStk);
+router.post("/callback", callback);
 
 module.exports=router;

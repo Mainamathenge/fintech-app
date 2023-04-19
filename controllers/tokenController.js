@@ -64,7 +64,7 @@ const postStk = async (req, res) => {
     PartyA: `254${phone}`,
     PartyB: 174379,
     PhoneNumber: `254${phone}`,
-    CallBackURL: "https://mydomain.com/path",
+    CallBackURL: "https://3f41-105-163-1-118.in.ngrok.io/token/callback",
     AccountReference: "Mpesa Test",
     TransactionDesc: "Testing stk push",
   };
@@ -84,5 +84,9 @@ const postStk = async (req, res) => {
       res.status(400).json(err.message);
     });
 };
+const callback = async (req, res, next) => {
+  const mpesa_response = req.body;
+  console.log(mpesa_response);
+};
 
-module.exports = { createToken, postStk };
+module.exports = { createToken, postStk , callback };

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const ngrok = require('ngrok');
 
 dotenv.config({ path: './config.env' });
 const app = require('./app');
@@ -17,3 +18,12 @@ const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
   console.log(`App running on ${port}...`);
 });
+ngrok.connect({
+  proto : 'http',
+  addr : process.env.PORT,
+}, (err, url) => {
+  if (err) {
+      console.error('Error while connecting Ngrok',err);
+    }
+    console.log("connected to NGROCK");
+  });
