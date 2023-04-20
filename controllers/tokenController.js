@@ -86,6 +86,7 @@ const postStk = async (req, res) => {
       res.status(400).json(err.message);
     });
 };
+
 const callback = async (req, res, next) => {
   const mpesa_response = req.body;
   console.log(mpesa_response);
