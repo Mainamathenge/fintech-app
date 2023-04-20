@@ -43,7 +43,7 @@ module.exports = class Email {
   }
 
   async sendWelcome() {
-    await this.send('welcome', 'Welcome to LearningNodejs!');
+    await this.send('welcome', 'Welcome to LearningNodejs! ');
   }
 
   async sendPasswordReset() {
