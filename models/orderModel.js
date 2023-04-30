@@ -19,9 +19,12 @@ const orderSchema = new mongoose.Schema({
     type : Number,
     required : true
   },
+  mpesaCode :{
+    type : String
+  },
   status: {
     type: String,
-    enum: ['Pending','awaiting_payment','shipping','Completed',],
+    enum: ['Pending','awaiting_payment','shipping','Completed'],
     required: true,
     default: 'Pending'
   },
