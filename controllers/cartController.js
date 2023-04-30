@@ -133,12 +133,12 @@ exports.payment = catchAsync(async (req, res, next) => {
   //payment call back from safaricom
  exports.safcallback = catchAsync(async(req,res,next )=>{
     console.log(req.Body)
-      if (req.body.Body.stkCallback.ResultCode !== 0) {
-        return;
-      }
-    const order = await Order.findOne({
-    CheckoutRequestID: req.body.Body.stkCallback.CheckoutRequestID,
-    });
-    next();
+    //   if (req.body.Body.stkCallback.ResultCode !== 0) {
+    //     return;
+    //   }
+    // const order = await Order.findOne({
+    // CheckoutRequestID: req.body.Body.stkCallback.CheckoutRequestID,
+    // });
+    //next();
 
  }) 
