@@ -43,7 +43,7 @@ exports.createCart = catchAsync(async(req , res ,next ) =>{
             cart.bill = cart.items.reduce((acc, curr) => {
             return acc + curr.quantity * curr.price;
          },0)
-            await cart.savmone();
+            await cart.save();
             res.status(200).send(cart);
         } 
         } 
