@@ -16,14 +16,7 @@ const createToken = async (req, res, next) => {
     .then((data) => {
       token = data.data.access_token;
       console.log(token);
-      next();
-      // console.log(data.data);
-      // res.status(200).json({
-      //   status: 'success',
-      //   token: {
-      //     data: data.data,
-      //   },
-      // });
+      return next();
     })
     .catch((err) => {
       console.log(err);
