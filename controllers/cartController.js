@@ -135,7 +135,7 @@ exports.payment = catchAsync(async (req, res, next) => {
     const mpesa_response = req.body;
     console.log(mpesa_response);
     checkoutId = mpesa_response.Body.stkCallback.CheckoutRequestID;
-    console.log(mpesa_response.Body.stkCallback.CallbackMetadata);
+    console.log(mpesa_response.Body.stkCallback.CallbackMetadata.Item[1].Value);
     //const order = await Order.findOne({checkoutId });
 
     if (mpesa_response.Body.stkCallback.ResultCode !== 0) {
