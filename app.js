@@ -27,7 +27,7 @@ app.use('/',viewController);
 app.use('/users',userRouter);
 app.use('/items',itemRouter);
 app.use('/cart',cartRouter);
-app.use('/token',tokenRouter);
+//app.use('/token',tokenRouter);
 
 // app.use(cartRouter)
 
