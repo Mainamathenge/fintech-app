@@ -1,7 +1,12 @@
 const Cart = require("../models/cartModel");
 const Item = require("../models/itemModel");
+const Order = require("../models/orderModel");
 const catchAsync = require("../utils/catchAsync");
+//const MpesaC2bAPI = require('../utils/mpesaC2B');
 const AppError = require("../utils/appError");
+const LipaNaMpesa = require("../utils/my-mpesa")
+
+const order_payment = new LipaNaMpesa();
 
 exports.createCart = catchAsync(async(req , res ,next ) =>{
     const owner = req.body.owner;
@@ -38,7 +43,7 @@ exports.createCart = catchAsync(async(req , res ,next ) =>{
             cart.bill = cart.items.reduce((acc, curr) => {
             return acc + curr.quantity * curr.price;
          },0)
-            await cart.save();
+            await cart.savmone();
             res.status(200).send(cart);
         } 
         } 
@@ -86,27 +91,54 @@ exports.deleteItem = catchAsync( async(req , res ) => {
 
 exports.checkout = catchAsync( async(req , res ) => {
     const owner = req.body.owner;
-    const cartId  = req.body.cart;
-       let cart = await Cart.findOne({ owner });
-       console.log(cart);
-   
-       const itemIndex = cart.items.findIndex((item) => item.itemId == itemId);
-       
-       if (itemIndex > -1) {
-         let item = cart.items[itemIndex];
-         cart.bill -= item.quantity * item.price;
-         if(cart.bill < 0) {
-             cart.bill = 0
-         } 
-         cart.items.splice(itemIndex, 1);
-         cart.bill = cart.items.reduce((acc, curr) => {
-           return acc + curr.quantity * curr.price;
-       },0)
-         cart = await cart.save();
-   
-         res.status(200).send(cart);
-       } else {
-       res.status(404).send("item not found");
-       }
+    const number = req.body.phone;
+    const _id  = req.body.cart;
+    console.log(_id);
+    let cart = await Cart.findOne({ _id });
+    postStk(phone, amount);
+    const response = await mpesaC2bService.initiatePayment(
+        cart.bill,
+        number,
+        'https://first-shop-fu4am.ondigitalocean.app/token/callback'
+    );
+
+    console.log(cart.bill);
 
 });
+
+exports.payment = catchAsync(async (req, res, next) => {
+    //from api
+    const phone = req.body.phone.substring(1);
+    const cart = req.body.cart;
+    const items = await Cart.findOne({_id : cart});
+    cartId = items._id.toString().substr(0, 24);
+    owner = items.owner.toString().substr(0, 24);
+    amount = items.bill;
+    //Getting response and and checkout id from safaricom when stk push is sent
+    const response = await order_payment.postStk(
+      amount,
+      phone
+    );
+    checkoutId = response.data.CheckoutRequestID;
+    // Creating the oder details for confirmation details.
+    const newPayment = await Order.create({
+        owner,
+        cart,
+        checkoutId,
+        amount,
+
+    });
+    res.status(200).json(newPayment);
+  });
+  //payment call back from safaricom
+ exports.safcallback = catchAsync(async(req,res,next )=>{
+    console.log(req.Body)
+      if (req.body.Body.stkCallback.ResultCode !== 0) {
+        return;
+      }
+    const order = await Order.findOne({
+    CheckoutRequestID: req.body.Body.stkCallback.CheckoutRequestID,
+    });
+    next();
+
+ }) 

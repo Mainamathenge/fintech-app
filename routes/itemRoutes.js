@@ -8,6 +8,7 @@ router
   .route('/')
   .get(itemController .getAllItem)
   .post(itemController .createItem);
+//router.post ('/', )
 
 router
   .route('/:id')

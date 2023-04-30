@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { token } = require("morgan");
 
 const createToken = async (req, res, next) => {
   const secret = process.env.Mpesa_Consumer_Secret;
@@ -14,17 +15,28 @@ const createToken = async (req, res, next) => {
       }
     )
     .then((data) => {
-      token = data.data.access_token;
-      console.log(token);
-      return next();
+      return  data.data.access_token;
+      // return token;
+      //console.log(token);
+    
+      // console.log(data.data);
+      // res.status(200).json({
+      //   status: 'success',
+      //   token: {
+      //     data: data.data,
+      //   },
+      // });
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err.message);
-    });
+    //return token;
+    // .catch((err) => {
+    //   console.log(err);
+    //   res.status(400).json(err.message);
+    // });
 };
 
 const postStk = async (req, res) => {
+  const auth = await createToken();
+  console.log(auth);
   const shortCode = 174379;
   const phone = req.body.phone.substring(1);
   const amount = req.body.amount;
@@ -71,7 +83,7 @@ const postStk = async (req, res) => {
       },
     })
     .then((data) => {
-      console.log(data);
+      //console.log(data);
       res.status(200).json(data.data);
     })
     .catch((err) => {

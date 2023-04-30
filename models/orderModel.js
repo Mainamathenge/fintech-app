@@ -11,6 +11,14 @@ const orderSchema = new mongoose.Schema({
     required: true,
     ref: 'Cart'
   },
+  checkoutId :{
+    type : String,
+    required : true
+  },
+  amount : {
+    type : Number,
+    required : true
+  },
   status: {
     type: String,
     enum: ['Pending','awaiting_payment','shipping','Completed',],
