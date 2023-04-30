@@ -132,11 +132,15 @@ exports.payment = catchAsync(async (req, res, next) => {
   });
   //payment call back from safaricom
  exports.safcallback = catchAsync(async(req,res,next )=>{
-    const mpesa_response = req.body
-    console.log(mpesa_response)
-    //   if (req.body.Body.stkCallback.ResultCode !== 0) {
-    //     return;
-    //   }
+    const mpesa_response = req.body;
+    console.log(mpesa_response);
+    checkoutId = mpesa_response.Body.stkCallback.CheckoutRequestID;
+    console.log(mpesa_response.Body.stkCallback.CallbackMetadata);
+    //const order = await Order.findOne({checkoutId });
+
+    if (mpesa_response.Body.stkCallback.ResultCode !== 0) {
+        return;
+    }
     // const order = await Order.findOne({
     // CheckoutRequestID: req.body.Body.stkCallback.CheckoutRequestID,
     // });
