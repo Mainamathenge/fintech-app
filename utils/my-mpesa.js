@@ -53,7 +53,7 @@ async postStk  (amount,phone)  {
           PartyA: `254${phone}`,
           PartyB: 174379,
           PhoneNumber: `254${phone}`,
-          CallBackURL: "https://5dc1-197-232-155-144.ngrok-free.app/cart/callback",
+          CallBackURL: "https://first-shop-fu4am.ondigitalocean.app/cart/callback",
           AccountReference: "Mpesa Test",
           TransactionDesc: "Testing stk push",
         };
