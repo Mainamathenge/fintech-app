@@ -132,7 +132,8 @@ exports.payment = catchAsync(async (req, res, next) => {
   });
   //payment call back from safaricom
  exports.safcallback = catchAsync(async(req,res,next )=>{
-    console.log(req.Body)
+    const mpesa_response = req.body
+    console.log(mpesa_response)
     //   if (req.body.Body.stkCallback.ResultCode !== 0) {
     //     return;
     //   }
