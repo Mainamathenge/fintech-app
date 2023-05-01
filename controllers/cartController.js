@@ -133,6 +133,7 @@ exports.payment = catchAsync(async (req, res, next) => {
   //payment call back from safaricom
  exports.safcallback = catchAsync(async(req,res,next )=>{
     if (mpesa_response.Body.stkCallback.ResultCode !== 0) {
+        console.log("no payment");
         next();
     }
     const mpesa_response = req.body;
@@ -141,9 +142,9 @@ exports.payment = catchAsync(async (req, res, next) => {
     console.log(mpesa_response.Body.stkCallback.CallbackMetadata.Item[1].Value);
     //const order = await Order.findOne({checkoutId });
 
-    if (mpesa_response.Body.stkCallback.ResultCode !== 0) {
-        return;
-    }
+    // if (mpesa_response.Body.stkCallback.ResultCode !== 0) {
+    //     return;
+    // }
     // const order = await Order.findOne({
     // CheckoutRequestID: req.body.Body.stkCallback.CheckoutRequestID,
     // });
