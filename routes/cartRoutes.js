@@ -1,5 +1,5 @@
 const express = require('express');
-const Cart = require('../models/cartModel');
+// const Cart = require('../models/cartModel');
 // const authController = require('../controllers/authController');
 const cartController = require('../controllers/cartController');
 
