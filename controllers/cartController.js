@@ -135,10 +135,10 @@ exports.payment = catchAsync(async (req, res, next) => {
     const mpesa_response = req.body;
     console.log(mpesa_response);
 
-    if (mpesa_response.Body.stkCallback.ResultCode !== 0) {
-        console.log("no payment");
-        return;
-    }
+    // if (mpesa_response.Body.stkCallback.ResultCode !== 0) {
+    //     console.log("no payment");
+    //     return;
+    // }
     
     console.log(mpesa_response);
     checkoutId = mpesa_response.Body.stkCallback.CheckoutRequestID;
