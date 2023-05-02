@@ -158,6 +158,6 @@ exports.payment = catchAsync(async (req, res, next) => {
     // const order = await Order.findOne({
     // CheckoutRequestID: req.body.Body.stkCallback.CheckoutRequestID,
     // });
-    //next();
+    next();
 
  }) 
