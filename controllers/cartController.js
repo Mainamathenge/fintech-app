@@ -99,7 +99,6 @@ exports.checkout = catchAsync( async(req , res ) => {
     const response = await mpesaC2bService.initiatePayment(
         cart.bill,
         number,
-        'https://first-shop-fu4am.ondigitalocean.app/cart/callback'
     );
 
     console.log(cart.bill);
