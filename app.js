@@ -20,9 +20,9 @@ app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 // Development logging
 
-app.get('/',(req, res) => {
-  res.send("hello world ").status(200);
-} )
+// app.get('/',(req, res) => {
+//   res.send("hello world ").status(200);
+// } )
 app.use('/',viewController);
 app.use('/users',userRouter);
 app.use('/items',itemRouter);
