@@ -151,7 +151,7 @@ exports.payment = catchAsync(async (req, res, next) => {
     }
     let doc = await Order.findOneAndUpdate(filter, update);
 
-    next();
+   // next();
     //const order = await Order.findOne({checkoutId });
 
  
