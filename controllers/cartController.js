@@ -150,6 +150,7 @@ exports.payment = catchAsync(async (req, res, next) => {
         mpesacode : code
     }
     let doc = await Order.findOneAndUpdate(filter, update);
+    console.log(doc);
 
     //const order = await Order.findOne({checkoutId });
 
