@@ -136,28 +136,27 @@ exports.payment = catchAsync(async (req, res, next) => {
  exports.safcallback = catchAsync(async(req,res,next )=>{
     const mpesa_response = req.body;
     console.log(mpesa_response);
-    // if (mpesa_response.Body.stkCallback.ResultCode !== 0) {
-    //     return;
-    // }
-    // checkoutId = mpesa_response.Body.stkCallback.CheckoutRequestID;
-    // code = mpesa_response.Body.stkCallback.CallbackMetadata.Item[1].Value;
+    if (mpesa_response.Body.stkCallback.ResultCode !== 0) {
+        return;
+    }
+    checkoutId = mpesa_response.Body.stkCallback.CheckoutRequestID;
+    code = mpesa_response.Body.stkCallback.CallbackMetadata.Item[1].Value;
 
-    // const filter = {
-    //     checkoutId : chcheckoutId
-    // };
-    // const update = {
-    //     status : 'Completed',
-    //     mpesacode : code
-    // }
-    // let doc = await Order.findOneAndUpdate(filter, update);
+    const filter = {
+        checkoutId : chcheckoutId
+    };
+    const update = {
+        status : 'Completed',
+        mpesacode : code
+    }
+    let doc = await Order.findOneAndUpdate(filter, update);
 
-   // next();
     //const order = await Order.findOne({checkoutId });
 
  
     // const order = await Order.findOne({
     // CheckoutRequestID: req.body.Body.stkCallback.CheckoutRequestID,
     // });
-    next();
+    res.status(200).json(doc);
 
  }) 
