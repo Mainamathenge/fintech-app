@@ -4,8 +4,8 @@ const { token } = require("morgan");
 
 class LipaNaMpesa {
     async createToken () {
-        const secret = process.env.Mpesa_Consumer_Secret;
-        const consumer = process.env.Mpesa_Consumer_key;
+        const secret = process.env.C2B_CONSUMER_SECRET;
+        const consumer = process.env.C2B_CONSUMER_KEY;
         const auth = new Buffer.from(`${consumer}:${secret}`).toString("base64");
         try{
          const response= await axios
@@ -27,12 +27,11 @@ class LipaNaMpesa {
 async postStk  (amount,phone)  {
         const token = await this.createToken();
         //console.log(token);
-        const shortCode = 174379;
+        const shortCode = process.env.C2B_SHORT_CODE;
         //const phone = req.body.phone.substring(1);
         //const amount = req.body.amount;
-        const passkey =
-          "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
-        const url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
+        const passkey = process.env.C2B_PASS_KEY;
+        const url = "https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
         const date = new Date();
         const timestamp =
           date.getFullYear() +
@@ -51,7 +50,7 @@ async postStk  (amount,phone)  {
           TransactionType: "CustomerPayBillOnline",
           Amount: amount,
           PartyA: `254${phone}`,
-          PartyB: 174379,
+          PartyB: process.env.C2B_SHORT_CODE,
           PhoneNumber: `254${phone}`,
           CallBackURL: 'https://first-shop-fu4am.ondigitalocean.app/cart/callback',
           AccountReference: "Mpesa Test",
@@ -76,3 +75,14 @@ async postStk  (amount,phone)  {
 }
 
 module.exports = LipaNaMpesa;
+
+
+
+
+// manager@perks.africa
+// tc@perks.africa
+// accountant@perks.africa
+// admin@perks.africa
+// test1234
+// https://dev.perks.africa/
+// https://www.udemy.com/course/design-and-develop-a-killer-website-with-html5-and-css3/

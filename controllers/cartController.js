@@ -138,20 +138,20 @@ exports.payment = catchAsync(async (req, res, next) => {
     if (mpesa_response.Body.stkCallback.ResultCode !== 0) {
         return;
     }
-    // checkoutId = mpesa_response.Body.stkCallback.CheckoutRequestID;
-    // code = mpesa_response.Body.stkCallback.CallbackMetadata.Item[1].Value;
+    checkoutId = mpesa_response.Body.stkCallback.CheckoutRequestID;
+    code = mpesa_response.Body.stkCallback.CallbackMetadata.Item[1].Value;
 
-    // const filter = {
-    //     checkoutId : chcheckoutId
-    // };
-    // const update = {
-    //     status : 'Completed',
-    //     mpesacode : code
-    // }
-    // let doc = await Order.findOneAndUpdate(filter, update);
-    // console.log(doc);
+    const filter = {
+        checkoutId : chcheckoutId
+    };
+    const update = {
+        status : 'Completed',
+        mpesacode : code
+    }
+    let doc = await Order.findOneAndUpdate(filter, update);
+    console.log(doc);
 
-    //const order = await Order.findOne({checkoutId });
+    // const order = await Order.findOne({checkoutId });
 
  
     // const order = await Order.findOne({
