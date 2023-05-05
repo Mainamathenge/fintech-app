@@ -142,7 +142,7 @@ exports.payment = catchAsync(async (req, res, next) => {
     code = mpesa_response.Body.stkCallback.CallbackMetadata.Item[1].Value;
 
     const filter = {
-        checkoutId : chcheckoutId
+        checkoutId : checkoutId
     };
     const update = {
         status : 'Completed',
