@@ -149,7 +149,7 @@ exports.payment = catchAsync(async (req, res, next) => {
 
     const update = {
         status : 'Completed',
-        mpesacode : code
+        mpesaCode : code
     };
 
     let doc = await Order.findOneAndUpdate(filter, update,{new : true});

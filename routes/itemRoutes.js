@@ -4,6 +4,8 @@ const itemController = require('../controllers/itemController');
 
 const router = express.Router();
 
+router.use(authController.protect);
+router.use(authController.restrictTo('Retailer','Admin'));
 router
   .route('/')
   .get(itemController .getAllItem)

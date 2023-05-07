@@ -4,52 +4,63 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
-    name: {
-       type: String,
-       required: true,
-       trim: true,
-       lowercase: true
-     },
-    email: {
-       type: String,
-       required: true,
-       unique: true,
-       lowercase: true,
-         validate( value ) {
-               if( !validator.isEmail( value )) {
-                    throw new Error( 'Email is invalid' )
-                     }
-                }
-      },
-    password: {
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+    lowercase: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    validate(value) {
+      if (!validator.isEmail(value)) {
+        throw new Error('Email is invalid');
+      }
+    },
+  },
+  phone: {
+    type: Number,
+    required: [true, 'Please provide your  phone number'],
+    unique: true,
+  },
+  role : {
+    type : String,
+    enum: ['Customer','Admin','Retailer'],
+    required : true,
+    default : 'Customer'
+  },
+  password: {
     type: String,
     required: [true, 'Please provide a password'],
     minLength: 8,
     select: false,
-    },
-    passwordConfirm: {
+  },
+  passwordConfirm: {
     type: String,
     required: [true, 'Please confirm your password'],
     validate: {
-        // This only works on CREATE and Save!!
-        validator: function (el) {
+      // This only works on CREATE and Save!!
+      validator: function (el) {
         return el === this.password;
-        },
-        message: 'Password are not the same!',
+      },
+      message: 'Password are not the same!',
     },
-    },
-    createdAt: {
+  },
+  createdAt: {
     type: Date,
     default: Date.now,
-    },
-    passwordChangedAt: Date,
-    passwordResetToken: String,
-    passwordResetExpires: Date,
-    active: {
+  },
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
+  active: {
     type: Boolean,
     default: true,
     select: false,
-    }
+  },
 });
     
 userSchema.pre('save', async function (next) {

@@ -20,7 +20,8 @@ const orderSchema = new mongoose.Schema({
     required : true
   },
   mpesaCode :{
-    type : String
+    type : String,
+    default : 'none'
   },
   status: {
     type: String,
