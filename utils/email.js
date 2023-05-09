@@ -14,8 +14,8 @@ module.exports = class Email {
     return nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.email,
-        pass: process.env.E_password,
+        user: 'mathenge.joseph18@students.dkut.ac.ke',
+        pass: 'wakaHATOLI001#',
       },
     });
   }
@@ -43,7 +43,7 @@ module.exports = class Email {
   }
 
   async sendWelcome() {
-    await this.send('welcome', 'Welcome to LearningNodejs! ');
+    await this.send('welcome', 'Welcome to LearningNodejs!');
   }
 
   async sendPasswordReset() {

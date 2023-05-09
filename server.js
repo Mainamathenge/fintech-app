@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const ngrok = require('ngrok');
+//const ngrok = require('ngrok');
 
 dotenv.config({ path: './config.env' });
 const app = require('./app');
