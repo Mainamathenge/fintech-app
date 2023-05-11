@@ -7,7 +7,7 @@ const router = new express.Router();
 
 router.post('/create', cartController.createCart );
 router.delete('/delete', cartController.deleteItem);
-router.post('/checkout',cartController.payment);
-router.post("/callback", cartController.safcallback);
+router.post('/checkout', cartController.payment);
+router.post('/callback', cartController.safcallback);
 
-module.exports = router ;
+module.exports = router;

@@ -52,4 +52,16 @@ module.exports = class Email {
       'Your password reset token (valid for only 10 minutes)'
     );
   }
+
+  async sendOrderPlaced() {
+    await this.send('Orderpdng', 'Your order has been Placed(Make payment)');
+  }
+
+  async paymentnotsucceciful() {
+    await this.send('pymntnt', 'Payment IS not succeciful');
+  }
+
+  async paymentsucceciful() {
+    await this.send('pymntsc', 'Payment  not succeciful');
+  }
 };

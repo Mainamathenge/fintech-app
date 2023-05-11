@@ -1,39 +1,39 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-  owner : {
+  owner: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'User'
+    ref: 'User',
   },
   cart: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'Cart'
+    ref: 'Cart',
   },
-  checkoutId :{
-    type : String,
-    required : true
+  checkoutId: {
+    type: String,
+    required: true,
   },
-  amount : {
-    type : Number,
-    required : true
+  amount: {
+    type: Number,
+    required: true,
   },
-  mpesaCode :{
-    type : String,
-    default : 'none'
+  mpesaCode: {
+    type: String,
+    default: 'none',
   },
   status: {
     type: String,
-    enum: ['Pending','awaiting_payment','shipping','Completed'],
+    enum: ['Pending', 'awaiting_payment', 'shipping', 'Completed'],
     required: true,
-    default: 'Pending'
+    default: 'Pending',
   },
   date: {
     type: Date,
     required: true,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 const Order = mongoose.model('Order', orderSchema);
