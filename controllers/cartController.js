@@ -1,3 +1,9 @@
+/* eslint-disable dot-notation */
+/* eslint-disable camelcase */
+/* eslint-disable import/order */
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
+/* eslint-disable arrow-body-style */
 const Cart = require('../models/cartModel');
 const Item = require('../models/itemModel');
 const Order = require('../models/orderModel');
@@ -110,10 +116,7 @@ exports.payment = catchAsync(async (req, res, next) => {
   //console.log(owner);
 
   // eslint-disable-next-line no-undef
-  console.log(owner);
   const name = await User.findOne({ _id: owner });
-  console.log(name);
-
   const url = `http://${req.get('host')}/me`;
 
   await new Email(name, url).sendOrderPlaced();
