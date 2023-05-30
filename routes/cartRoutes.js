@@ -5,7 +5,7 @@ const cartController = require('../controllers/cartController');
 
 const router = new express.Router();
 
-router.post('/create', cartController.createCart );
+router.post('/create', cartController.createCart);
 router.delete('/delete', cartController.deleteItem);
 router.post('/checkout', cartController.payment);
 router.post('/callback', cartController.safcallback);
