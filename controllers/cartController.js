@@ -33,9 +33,7 @@ exports.createCart = catchAsync(async (req, res, next) => {
     if (itemIndex > -1) {
       let product = cart.items[itemIndex];
       product.quantity += quantity;
-      cart.bill = cart.items.reduce((acc, curr) => {
-        return acc + curr.quantity * curr.price;
-      }, 0);
+      cart.bill = cart.items.reduce((acc, curr) => acc + curr.quantity * curr.price, 0);
       cart.items[itemIndex] = product;
       await cart.save();
       res.status(200).send(cart);
@@ -105,13 +103,16 @@ exports.payment = catchAsync(async (req, res, next) => {
   const cart = req.body.cart;
   const items = await Cart.findOne({ _id: cart });
   //console.log(items);
+  //console.log(items);
   const cartId = items._id.toString().substr(0, 24);
   const owner = items.owner.toString().substr(0, 24);
   const amount = items.bill;
-  console.log(owner);
+  //console.log(owner);
 
   // eslint-disable-next-line no-undef
+  console.log(owner);
   const name = await User.findOne({ _id: owner });
+  console.log(name);
 
   const url = `http://${req.get('host')}/me`;
 

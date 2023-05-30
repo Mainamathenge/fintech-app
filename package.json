@@ -37,6 +37,7 @@
     "passport-twitter": "^0.1.5",
     "password": "^0.1.1",
     "pug": "^3.0.2",
+    "puppeteer": "^20.2.1",
     "request": "^2.88.2",
     "request-promise": "^0.0.1",
     "sharp": "^0.31.2",
